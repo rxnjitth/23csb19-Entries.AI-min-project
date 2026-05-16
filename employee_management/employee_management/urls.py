@@ -14,11 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.http import HttpResponse
 from django.contrib import admin
 from django.urls import path, include
 
+
+def favicon_view(request):
+    return HttpResponse(status=204)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('favicon.ico', favicon_view),
     # Serve the employee app at the site root and under /employee/
     path('', include('employee.urls')),
     path('employee/', include('employee.urls')),
