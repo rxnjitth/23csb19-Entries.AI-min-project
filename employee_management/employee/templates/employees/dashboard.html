@@ -9,6 +9,12 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+<div>
+  Welcome, {{ user.username }}
+</div>
+{% endif %}
+
 <div>
   <div>
     <div>Total Employees</div>
