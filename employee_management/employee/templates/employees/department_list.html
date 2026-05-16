@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Departments{% endblock %}
+
+{% block content %}
+<h1>Departments</h1>
+
+<ul>
+  {% for d in departments %}
+    <li>{{ d.name }} - <a href="#">Edit</a></li>
+  {% empty %}
+    <li>No departments yet.</li>
+  {% endfor %}
+</ul>
+
+<p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ title|default:"Department" }}{% endblock %}
+
+{% block content %}
+<h1>{{ title|default:"Department" }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    <div>
+      {{ field.label_tag }}
+      {{ field }}
+      {% for err in field.errors %}<div>{{ err }}</div>{% endfor %}
+    </div>
+  {% endfor %}
+  <button type="submit">{{ submit_label|default:"Save" }}</button>
+</form>
+
+{% endblock %}
