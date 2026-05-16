@@ -2,16 +2,20 @@
 {% block title %}Departments{% endblock %}
 
 {% block content %}
-<h1>Departments</h1>
+<div class="stack">
+  <div>
+    <h1 class="page-title">Departments</h1>
+  </div>
 
-<ul>
-  {% for d in departments %}
-    <li>{{ d.name }} - <a href="#">Edit</a></li>
-  {% empty %}
-    <li>No departments yet.</li>
-  {% endfor %}
-</ul>
+  <ul>
+    {% for d in departments %}
+      <li>{{ d.name }} - <a class="edit-link" href="#">Edit</a></li>
+    {% empty %}
+      <li>No departments yet.</li>
+    {% endfor %}
+  </ul>
 
-<p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
+  <p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
+</div>
 
 {% endblock %}

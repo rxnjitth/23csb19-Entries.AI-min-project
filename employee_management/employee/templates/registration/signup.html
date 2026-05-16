@@ -2,8 +2,11 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<div>
-  <h1>Create Account</h1>
+<div class="auth-card stack">
+  <div>
+    <h1 class="page-title">Create Account</h1>
+    <p class="page-subtitle">Set up a new account to manage employees.</p>
+  </div>
   <form method="post">
     {% csrf_token %}
     {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
@@ -32,9 +35,11 @@
       {% for e in form.password2.errors %}<div>{{ e }}</div>{% endfor %}
     </div>
 
-    <button type="submit">Create Account</button>
+    <div class="inline-actions">
+      <button type="submit">Create Account</button>
+    </div>
   </form>
 
-  <p>Already have account? <a href="{% url 'login' %}">Sign in</a></p>
+  <p class="muted">Already have account? <a href="{% url 'login' %}">Sign in</a></p>
 </div>
 {% endblock %}

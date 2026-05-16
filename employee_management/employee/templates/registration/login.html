@@ -2,8 +2,11 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div>
-  <h1>Sign In</h1>
+<div class="auth-card stack">
+  <div>
+    <h1 class="page-title">Sign In</h1>
+    <p class="page-subtitle">Use your account details to continue.</p>
+  </div>
 
   {% if messages %}
     {% for msg in messages %}
@@ -28,10 +31,12 @@
     </div>
 
     {% for e in form.non_field_errors %}<div>{{ e }}</div>{% endfor %}
-    <button type="submit">Sign In</button>
+    <div class="inline-actions">
+      <button type="submit">Sign In</button>
+    </div>
   </form>
 
-  <p>
+  <p class="muted">
     No account? <a href="{% url 'signup' %}">Sign up</a>
   </p>
 </div>
