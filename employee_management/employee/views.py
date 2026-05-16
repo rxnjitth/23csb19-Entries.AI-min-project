@@ -7,7 +7,6 @@ from django.db.models import Q
 from .models import Employee, Department
 from .forms import (
     SignupForm,
-    LoginForm,
     EmployeeForm,
     DepartmentForm,
     EmployeeSearchForm,
@@ -26,7 +25,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, f'Welcome, {user.username}!')
+            messages.success(request, f'Account created for {user.username}.')
             return redirect(next_url or 'dashboard')
     else:
         form = SignupForm()
@@ -34,30 +33,12 @@ def signup_view(request):
     return render(request, 'registration/signup.html', {'form': form, 'next': next_url})
 
 
-def login_view(request):
-   
-    if request.user.is_authenticated:
-        return redirect('dashboard')
-
-    next_url = request.GET.get('next') or request.POST.get('next')
-
-    if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            login(request, form.get_user())
-            return redirect(next_url or 'dashboard')
-    else:
-        form = LoginForm(request)
-
-    return render(request, 'registration/login.html', {'form': form, 'next': next_url})
-
-
 def logout_view(request):
-   
     logout(request)
     return redirect('login')
 
 
+@login_required(login_url='login')
 def dashboard(request):
     
     search_form = EmployeeSearchForm(request.GET or None)
